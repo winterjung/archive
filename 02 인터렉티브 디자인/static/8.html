@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>중간고사 보는 햄스터</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+
+    <!-- Load the Paper.js library -->
+    <script type="text/javascript" src="js/paper.js" charset="utf-8"></script>
+    <!-- Define inlined JavaScript -->
+    <script type="text/javascript" charset="utf-8">
+        class Ham {
+            constructor(center_x, center_y, scale=1, angle=0) {
+                var body = new paper.Shape.Ellipse({
+                    center: [center_x, center_y + 225],
+                    radius: [190, 210],
+                    fillColor: 'black'
+                });
+
+                var left_leg = new paper.Shape.Ellipse({
+                    center: [center_x - 125, center_y + 360],
+                    radius: [85, 85],
+                    fillColor: 'black'
+                });
+
+                var right_leg = new paper.Shape.Ellipse({
+                    center: [center_x + 125, center_y + 360],
+                    radius: [85, 85],
+                    fillColor: 'black'
+                });
+
+                var left_foot = new paper.Path.Line({
+                    from: [center_x - 205, center_y + 445 - 15],
+                    to: [center_x - 125, center_y + 445 - 15],
+                    strokeColor: 'black',
+                    strokeCap: 'round',
+                    strokeWidth: 30
+                });
+
+                var right_foot = new paper.Path.Line({
+                    from: [center_x + 205, center_y + 445 - 15],
+                    to: [center_x + 125, center_y + 445 - 15],
+                    strokeColor: 'black',
+                    strokeCap: 'round',
+                    strokeWidth: 30
+                });
+
+                var face = new paper.Shape.Ellipse({
+                    center: [center_x, center_y],
+                    radius: [155, 155],
+                    fillColor: 'black'
+                });
+
+                var left_cheek = new paper.Shape.Ellipse({
+                    center: [center_x - 125, center_y + 65],
+                    radius: [105, 105],
+                    fillColor: 'black'
+                });
+
+                var right_cheek = new paper.Shape.Ellipse({
+                    center: [center_x + 125, center_y + 65],
+                    radius: [105, 105],
+                    fillColor: 'black'
+                });
+
+                var left_ear = new paper.Shape.Ellipse({
+                    center: [center_x - 100, center_y - 130],
+                    radius: [40, 30],
+                    fillColor: 'black'
+                }).rotate(45);
+
+                var right_ear = new paper.Shape.Ellipse({
+                    center: [center_x + 100, center_y - 130],
+                    radius: [40, 30],
+                    fillColor: 'black'
+                }).rotate(-45);
+
+                var left_mouse = new paper.Path.Arc({
+                    from: [center_x - 60, center_y + 75],
+                    through: [center_x - 35, center_y + 105],
+                    to: [center_x, center_y + 75],
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var right_mouse = new paper.Path.Arc({
+                    from: [center_x + 60, center_y + 75],
+                    through: [center_x + 35, center_y + 105],
+                    to: [center_x, center_y + 75],
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var left_eye = new paper.Shape.Ellipse({
+                    center: [center_x - 70, center_y - 40],
+                    radius: [12, 25],
+                    fillColor: 'white'
+                });
+
+                var right_eye = new paper.Shape.Ellipse({
+                    center: [center_x + 70, center_y - 40],
+                    radius: [12, 25],
+                    fillColor: 'white'
+                });
+
+                var left_arm = new paper.Path.Rectangle({
+                    topLeft: [center_x - 120, center_y + 225],
+                    bottomRight: [center_x - 80, center_y + 295],
+                    radius: 20,
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var left_block = new paper.Path.Rectangle({
+                    topLeft: [center_x - 135, center_y + 215],
+                    bottomRight: [center_x - 65, center_y + 245],
+                    fillColor: 'black'
+                });
+
+                var right_arm = new paper.Path.Rectangle({
+                    topLeft: [center_x + 120, center_y + 225],
+                    bottomRight: [center_x + 80, center_y + 295],
+                    radius: 20,
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var right_block = new paper.Path.Rectangle({
+                    topLeft: [center_x + 135, center_y + 215],
+                    bottomRight: [center_x + 65, center_y + 245],
+                    fillColor: 'black'
+                });
+
+                var left_circle = new paper.Shape.Ellipse({
+                    center: [center_x - 165, center_y + 65],
+                    radius: [50, 50],
+                    fillColor: '#b54a03'
+                });
+
+                var right_circle = new paper.Shape.Ellipse({
+                    center: [center_x + 165, center_y + 65],
+                    radius: [50, 50],
+                    fillColor: '#b54a03'
+                });
+
+                var cheek = new paper.Group({
+                    children: [left_cheek, right_cheek, left_circle, right_circle],
+                    name: "cheek"
+                });
+
+                var ear = new paper.Group({
+                    children: [left_ear, right_ear],
+                    name: "ear"
+                });
+
+                var eye = new paper.Group({
+                    children: [left_eye, right_eye],
+                    name: "eye"
+                });
+
+                var mouse = new paper.Group({
+                    children: [left_mouse, right_mouse],
+                    name: "mouse"
+                });
+                mouse.position.y -= 65;
+                mouse.scaling = 0.75;
+
+                var leg = new paper.Group({
+                    children: [left_leg, right_leg, left_foot, right_foot],
+                    name: "leg"
+                });
+
+                var left_arms = new paper.Group({
+                    children: [left_arm, left_block],
+                    name: "left_arm"
+                });
+
+                var right_arms = new paper.Group({
+                    children: [right_arm, right_block],
+                    name: "right_arm"
+                });
+
+                var arm = new paper.Group({
+                    children: [left_arms, right_arms],
+                    name: "arm"
+                });
+
+                var head = new paper.Group({
+                    children: [face, cheek, ear, eye, mouse],
+                    name: "head"
+                });
+
+                this.character = new paper.Group({
+                    children: [body, head, leg, arm]
+                });
+                this.character.transformContent = false;
+                this.character.scaling = scale;
+                this.character.rotate(angle);
+
+                this.set_body_color(this.character);
+                this.set_face_color(this.character);
+            }
+            move(x, y) {
+                this.character.position.x += x;
+                this.character.position.y += y;
+            }
+
+            rotate(angle) {
+                this.character.rotate(angle);
+            }
+
+            transform(size) {
+                this.character.scaling = size;
+            }
+
+            set_body_color(character) {
+                var r = Math.random() * (0 - 0.6) + 0.6;
+                var g = r / 2;
+                var b = r / 3;
+                var color = new paper.Color(r, g, b);
+
+                character.children[0].fillColor = color
+                character.children["head"].children[0].fillColor = color;
+                character.children["head"].children[1].children[0].fillColor = color;
+                character.children["head"].children[1].children[1].fillColor = color;
+                character.children["head"].children[2].fillColor = color;
+                character.children["leg"].children[0].fillColor = color;
+                character.children["leg"].children[1].fillColor = color;
+                character.children["leg"].children[2].strokeColor = color;
+                character.children["leg"].children[3].strokeColor = color;
+                character.children["arm"].children[0].children[1].fillColor = color;
+                character.children["arm"].children[1].children[1].fillColor = color;
+            }
+
+            set_face_color(character) {
+                var r = Math.random() * (0.6 - 1) + 1;
+                var g = Math.random() * (0.1 - 0.6) + 0.6;
+                var b = r / 3;
+                var color = new paper.Color(r, g, b);
+                character.children["head"]
+                    .children["cheek"]
+                    .children[2]
+                    .fillColor = color;
+                character.children["head"]
+                    .children["cheek"]
+                    .children[3]
+                    .fillColor = color;
+            }
+        }
+
+        class Text {
+            constructor(x, y, content, size, color="black", weight="normal") {
+                this.text = new paper.PointText(new paper.Point(x, y));
+                this.text.fillColor = color;
+                this.text.content = content;
+                this.text.fontSize = size;
+                this.text.fontWeight = weight;
+                this.text.fontFamily = "consolas";
+            }
+        }
+
+        class Button {
+            constructor(x, y, width, height, color="#aaa", hover_color="#333") {
+                this.color = color;
+                this.hover_color = hover_color;
+
+                this.shadow = new paper.Path.Rectangle({
+                    point: [x, y+10],
+                    size: [width, height],
+                    strokeWidth: 0,
+                    fillColor: "#333"
+                })
+                this.body = new paper.Path.Rectangle({
+                    point: [x, y],
+                    size: [width, height],
+                    strokeWidth: 0,
+                    fillColor: color
+                })
+
+                // 텍스트 위에서 커서가 움직이면 적용 안되는 버그 해결해야함
+                // this.body.onMouseEnter = event => {
+                //     this.body.fillColor = this.hover_color;
+                // }
+
+                this.body.onMouseMove = event => {
+                    this.body.fillColor = this.hover_color;
+                }
+
+                this.body.onMouseLeave = event => {
+                    this.body.fillColor = this.color;
+                }
+
+                this.body.onMouseDown = event => {
+                    this.body.position.y += 5;
+                    this.description.text.position.y += 5;
+                }
+
+                // 밖에서 Mouse Down된 채로 들어왔나 검사해야함
+                this.body.onMouseUp = event => {
+                    this.body.position.y -= 5;
+                    this.description.text.position.y -= 5;
+                }
+            }
+            set_text(content, size=12) {
+                var x = this.body.position.x-100;
+                var y = this.body.position.y;
+                this.description = new Text(x, y, content, size);
+            }
+        }
+
+        window.onload = function () {
+            // Get a reference to the canvas object
+            var canvas = document.getElementById('myCanvas');
+            // Create an empty project and a view for the canvas:
+            paper.setup(canvas);
+
+            var width = paper.view.viewSize.width;
+            var height = paper.view.viewSize.height;
+            var image = new paper.Raster({
+                source: "https://static.vecteezy.com/system/resources/previews/000/101/804/original/vector-pastel-abstract-gemstone-pattern.jpg",
+                position: paper.view.center
+            });
+            if(width > 1400) {
+                image.scale(1.5);
+            }
+            var description = new Text(width/2-100, 150, "WASD : move", 32);
+
+            var center_x = width/2;
+            var center_y = height/2;
+            var hamster = new Ham(center_x, center_y);
+            var green_button = null;
+            var red_button = null;
+            
+            function generate_button(color) {
+                if(color === "green") {
+                    if(green_button !== null) {
+                        green_button.body.remove();
+                        green_button.shadow.remove();
+                        green_button.description.text.remove();
+                    }
+                    green_button = new Button(center_x-width/5, center_y-height/3, 200, 100, "#1fda69", "#159548");
+                    green_button.set_text("re-draw", 32)
+                    green_button.description.text.position.x += 35;
+                    green_button.description.text.position.y += 10;
+
+                }
+                else if(color === "red") {
+                    if(red_button !== null) {
+                        red_button.body.remove();
+                        red_button.shadow.remove();
+                        red_button.description.text.remove();
+                    }
+                    red_button = new Button(center_x+width/5-200, center_y-height/3, 200, 100, "#ef3636", "#b90f0f");
+                    red_button.set_text("sound play", 32)
+                    red_button.description.text.position.x += 12;
+                    red_button.description.text.position.y += 10;
+
+                }
+            }
+            generate_button("green");
+            generate_button("red");
+
+            function map(value, start1, stop1, start2, stop2) {
+                return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+            }
+
+            function audioPlay(){
+                var audio = document.getElementById("hamster_audio");
+                if(audio.paused){
+                    audio.play();
+                }else{
+                    audio.pause();
+                }
+            }
+
+            paper.view.onMouseDown = function (event) {
+                x = event.point.x;
+                y = event.point.y;
+                // console.log(x, y);
+
+                // red button bound
+                if (x > 975 && x < 1175 && y > 163 && y < 261) {
+                    audioPlay();
+                }
+                // green button bound
+                if (x > 503 && x < 702 && y > 163 && y < 261) {
+                    hamster.character.remove();
+                    hamster = new Ham(center_x, center_y, Math.random() * (0.6 - 1) + 1);
+                    generate_button("green");
+                    generate_button("red");
+                }
+
+            }
+
+            paper.view.onKeyDown = function (event) {
+                switch(event.key) {
+                    case "a":
+                        hamster.move(-10, 0);
+                        break;
+                    case "s":
+                        hamster.move(0, 10);
+                        break;
+                    case "d":
+                        hamster.move(10, 0);
+                        break;
+                    case "w":
+                        hamster.move(0, -10);
+                        break;
+                }
+            }
+
+            paper.view.onFrame = function (event) {
+            }
+
+            paper.view.onResize = function (event) {
+            }
+
+            paper.view.draw();
+        }
+    </script>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        canvas[resize] {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1500" height="1000" resize></canvas>
+    <audio id="hamster_audio" >
+        <source src="bird.mp3" type="audio/mp3"> 
+    </audio>
+</body>
+
+</html>
