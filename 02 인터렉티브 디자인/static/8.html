@@ -375,16 +375,25 @@
             }
 
             paper.view.onMouseDown = function (event) {
-                x = event.point.x;
-                y = event.point.y;
-                // console.log(x, y);
+                var x = event.point.x;
+                var y = event.point.y;
+                console.log(x, y);
 
                 // red button bound
-                if (x > 975 && x < 1175 && y > 163 && y < 261) {
+                var left = red_button.body.point[0]
+                var right = red_button.body.point[0] + red_button.body.size[0]
+                var top = red_button.body.point[1]
+                var bottom = red_button.body.point[1] + red_button.body.size[1]
+                if (x > left && x < right && y > top && y < bottom) {
                     audioPlay();
                 }
+
                 // green button bound
-                if (x > 503 && x < 702 && y > 163 && y < 261) {
+                left = green_button.body.point[0]
+                right = green_button.body.point[0] + green_button.body.size[0]
+                top = green_button.body.point[1]
+                bottom = green_button.body.point[1] + green_button.body.size[1]
+                if (x > left && x < right && y > top && y < bottom) {
                     hamster.character.remove();
                     hamster = new Ham(center_x, center_y, Math.random() * (0.6 - 1) + 1);
                     generate_button("green");
