@@ -2,105 +2,55 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <style type="text/css">
-        html,
-        body {
-            margin: 0;
-            overflow: scroll;
-            height: 100%;
-        }
-        /* Scale canvas with resize attribute to full size */
+  <title>Ham Ham~</title>
 
-        div.container {
-            width: 100%; 
-            border: 1px solid gray;
-            /*height: 1200px;*/
-            background-color: black;
-        }
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="author" content="WinterJ">
 
-        header,
-        footer {
-            width: 95%;
-            padding: 2.5%;
-            color: white;
-            background-color: purple;
-            clear: left;
-            text-align: center;
-        }
-
-        h1 {
-            margin: 0px;
-            border: 0px;
-        }
-
-        nav {
-            float: left;
-            width: 20%;
-            padding: 2.5%;
-            background-color: red;
-            height: 800px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul a {
-            text-decoration: none;
-        }
-
-        article {
-            margin-left: 170px;
-            border-left: 1px solid gray;
-            padding: 1em;
-            overflow: hidden;
-        }
-
-        iframe {
-            width: 70%;
-            height: 800px;
-            padding: 2.5%;
-        }
-        /*#article {
-            margin-left: 170px;
-            border-left: 1px solid gray;
-            padding: 10em;
-            overflow: hidden;
-        }*/
-    </style>
-    <script type="text/javascript" src="http://paperjs.org/assets/js/paper.js">
-    </script>
+  <link rel="stylesheet" type="text/css" href="./9-style.css">
+  <link rel="shortcut icon" href="./img/hamster.jpg" type="image/x-icon">
+  <script type="text/javascript" src="http://paperjs.org/assets/js/paper.js"></script>
+  
 </head>
 
 <body>
+  <div class="wrapper-masthead">
     <div class="container">
+      <header class="masthead clearfix">
+        <a href="./9.html" class="site-avatar"><img src="./img/hamster.jpg"></a>
 
-        <header>
-            <h1>나의 귀여운 햄스터</h1>
-            <h2>My sweet hamster</h2>
-        </header>
+        <div class="site-info">
+          <h1 class="site-name"><a href="http://winterj.me/">My Sweet hamster</a></h1>
+          <p class="site-description">Very wow Such hamster Much plump</p>
+        </div>
 
         <nav>
-            <ul>
-                <li><a href="9-1.html" target="contents">1 첫번째 first</a></li>
-                <li><a href="9-2.html" target="contents">2 두번째 second</a></li>
-                <li><a href="9-3.html" target="contents">3 세번째 third</a></li>
-            </ul>
+          <a href="./9-1.html" target="contents">Intro</a>
+          <a href="./9-2.html" target="contents">^ _ ^</a>
+          <a href="./9-3.html" target="contents">\ _ /</a>
         </nav>
-        <article>hello, world</article> 
-        <iframe src="9-1.html" name="contents" frameborder="0"></iframe>
-
-        <footer>Copyright &copy; winterj</footer>
-
+      </header>
     </div>
+  </div>
 
+  <div id="main" role="main" class="container">
+    <article class="post">
+      <iframe src="./9-1.html" id="contents" name="contents"></iframe>
+    </article>
+
+  </div>
+
+  <div class="wrapper-footer">
+    <div class="container">
+      <footer class="footer">
+        <a href="mailto:wintermy201@naver.com"><i class="svg-icon email"></i></a>
+        <a href="https://github.com/JungWinter"><i class="svg-icon github"></i></a>
+        <a href="https://facebook.com/wintermy201"><i class="svg-icon facebook"></i></a>
+      </footer>
+    </div>
+  </div>
 
 </body>
-<script type="text/javascript">
-    var article = document.getElementById("article");
-</script>
-
 
 </html>
