@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            overflow: scroll;
+            height: 100%;
+        }
+        /* Scale canvas with resize attribute to full size */
+
+        div.container {
+            width: 100%; 
+            border: 1px solid gray;
+            /*height: 1200px;*/
+            background-color: black;
+        }
+
+        header,
+        footer {
+            width: 95%;
+            padding: 2.5%;
+            color: white;
+            background-color: purple;
+            clear: left;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0px;
+            border: 0px;
+        }
+
+        nav {
+            float: left;
+            width: 20%;
+            padding: 2.5%;
+            background-color: red;
+            height: 800px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul a {
+            text-decoration: none;
+        }
+
+        article {
+            margin-left: 170px;
+            border-left: 1px solid gray;
+            padding: 1em;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 70%;
+            height: 800px;
+            padding: 2.5%;
+        }
+        /*#article {
+            margin-left: 170px;
+            border-left: 1px solid gray;
+            padding: 10em;
+            overflow: hidden;
+        }*/
+    </style>
+    <script type="text/javascript" src="http://paperjs.org/assets/js/paper.js">
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <h1>나의 귀여운 햄스터</h1>
+            <h2>My sweet hamster</h2>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="9-1.html" target="contents">1 첫번째 first</a></li>
+                <li><a href="9-2.html" target="contents">2 두번째 second</a></li>
+                <li><a href="9-3.html" target="contents">3 세번째 third</a></li>
+            </ul>
+        </nav>
+        <article>hello, world</article> 
+        <iframe src="9-1.html" name="contents" frameborder="0"></iframe>
+
+        <footer>Copyright &copy; winterj</footer>
+
+    </div>
+
+
+</body>
+<script type="text/javascript">
+    var article = document.getElementById("article");
+</script>
+
+
+</html>
