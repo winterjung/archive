@@ -1,0 +1,56 @@
+﻿FREEMAN'S DEGREE CENTRALITY MEASURES:
+--------------------------------------------------------------------------------
+
+Diagonal valid?                         NO
+Model:                                  SYMMETRIC
+Input dataset:                          5-30 DL (D:\����\���б�\2017�� 1�б�\��������\5-30 DL)
+
+
+                     1            2            3
+                Degree    NrmDegree        Share
+          ------------ ------------ ------------
+    1  A         5.000       33.333        0.167
+    2  B         5.000       33.333        0.167
+    3  C         5.000       33.333        0.167
+   12  L         2.000       13.333        0.067
+    7  G         2.000       13.333        0.067
+    6  F         1.000        6.667        0.033
+    5  E         1.000        6.667        0.033
+    8  H         1.000        6.667        0.033
+    9  I         1.000        6.667        0.033
+   10  J         1.000        6.667        0.033
+   11  K         1.000        6.667        0.033
+    4  D         1.000        6.667        0.033
+   13  M         1.000        6.667        0.033
+   14  N         1.000        6.667        0.033
+   15  O         1.000        6.667        0.033
+   16  P         1.000        6.667        0.033
+
+
+DESCRIPTIVE STATISTICS
+
+                            1            2            3
+                       Degree    NrmDegree        Share
+                 ------------ ------------ ------------
+    1      Mean         1.875       12.500        0.063
+    2   Std Dev         1.536       10.240        0.051
+    3       Sum        30.000      200.000        1.000
+    4  Variance         2.359      104.861        0.003
+    5       SSQ        94.000     4177.777        0.104
+    6     MCSSQ        37.750     1677.778        0.042
+    7  Euc Norm         9.695       64.636        0.323
+    8   Minimum         1.000        6.667        0.033
+    9   Maximum         5.000       33.333        0.167
+   10  N of Obs        16.000       16.000       16.000
+
+
+Network Centralization = 23.81%
+Blau Heterogeneity = 10.44%.  Normalized (IQV) = 4.47%
+
+Actor-by-centrality matrix saved as dataset 5-30 DL-deg
+
+----------------------------------------
+Running time:  00:00:01
+Output generated:  31 5 17 22:46:48
+UCINET 6.593 Copyright (c) 1992-2015 Analytic Technologies
+

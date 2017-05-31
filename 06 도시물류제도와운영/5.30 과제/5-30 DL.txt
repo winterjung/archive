@@ -1,0 +1,19 @@
+DL N=16
+Format=edgelist1
+Labels embedded
+Data:
+A E
+A F
+A D
+A H
+A G
+B G
+B I
+B J
+B K
+B L
+C L
+C M
+C N
+C P
+C O

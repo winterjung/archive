@@ -1,0 +1,64 @@
+﻿CLOSENESS CENTRALITY
+--------------------------------------------------------------------------------
+
+Input dataset:                          5-30 DL (D:\����\���б�\2017�� 1�б�\��������\5-30 DL)
+Method:                                 Geodesic paths only (Freeman Closeness)
+Output dataset:                         5-30 DL-clo (D:\����\���б�\2017�� 1�б�\��������\�ǽ�_1����\������-����\5-30 DL-clo)
+
+Note: Data not symmetric, therefore separate in-closeness & out-closeness computed.
+
+
+The network is not connected. Technically, closeness centrality 
+cannot be computed, as there are undefined distances.
+-- You have chosen to set undefined distances to N, the number of nodes
+
+
+Closeness Centrality Measures
+
+                     1            2            3            4
+             inFarness   outFarness  inCloseness outCloseness
+          ------------ ------------ ------------ ------------
+    7  G       210.000      240.000        7.143        6.250
+   12  L       210.000      240.000        7.143        6.250
+    9  I       225.000      240.000        6.667        6.250
+   10  J       225.000      240.000        6.667        6.250
+    5  E       225.000      240.000        6.667        6.250
+    6  F       225.000      240.000        6.667        6.250
+   11  K       225.000      240.000        6.667        6.250
+    8  H       225.000      240.000        6.667        6.250
+   13  M       225.000      240.000        6.667        6.250
+   14  N       225.000      240.000        6.667        6.250
+   15  O       225.000      240.000        6.667        6.250
+    4  D       225.000      240.000        6.667        6.250
+   16  P       225.000      240.000        6.667        6.250
+    1  A       240.000      165.000        6.250        9.091
+    3  C       240.000      165.000        6.250        9.091
+    2  B       240.000      165.000        6.250        9.091
+
+Statistics
+
+                                     1             2             3             4 
+                             inFarness    outFarness   inCloseness  outCloseness 
+                         ------------- ------------- ------------- ------------- 
+    1            Minimum           210           165         6.250         6.250 
+    2            Average       225.938       225.938         6.648         6.783 
+    3            Maximum           240           240         7.143         9.091 
+    4                Sum          3615          3615       106.369       108.523 
+    5 Standard Deviation         8.333        29.273         0.246         1.109 
+    6           Variance        69.434       856.934         0.061         1.230 
+    7                SSQ        817875        830475       708.117       755.746 
+    8              MCSSQ      1110.938     13710.938         0.969        19.672 
+    9     Euclidean Norm       904.364       911.304        26.610        27.491 
+   10       Observations            16            16            16            16 
+   11            Missing             0             0             0             0 
+
+
+11 rows, 4 columns, 1 levels.
+Network centralization not computed for unconnected graphs
+Output actor-by-centrality measure matrix saved as dataset 5-30 DL-clo (D:\����\���б�\2017�� 1�б�\��������\�ǽ�_1����\������-����\5-30 DL-clo)
+
+----------------------------------------
+Running time:  00:00:01
+Output generated:  31 5 17 22:47:48
+UCINET 6.593 Copyright (c) 1992-2015 Analytic Technologies
+

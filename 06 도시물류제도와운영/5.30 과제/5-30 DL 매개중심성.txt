@@ -1,0 +1,59 @@
+﻿FREEMAN BETWEENNESS CENTRALITY
+--------------------------------------------------------------------------------
+
+Input dataset:                          5-30 DL (D:\����\���б�\2017�� 1�б�\��������\5-30 DL)
+
+
+
+Important note: This routine cannot handle valued data, so it binarizes your data automatically.
+                It DOES handle directed (non-symmetric) data, so it does NOT symmetrize.
+
+
+Un-normalized centralization: 0.000
+
+                     1            2
+           Betweenness nBetweenness
+          ------------ ------------
+    1  A         0.000        0.000
+    2  B         0.000        0.000
+    3  C         0.000        0.000
+    4  D         0.000        0.000
+    5  E         0.000        0.000
+    6  F         0.000        0.000
+    7  G         0.000        0.000
+    8  H         0.000        0.000
+    9  I         0.000        0.000
+   10  J         0.000        0.000
+   11  K         0.000        0.000
+   12  L         0.000        0.000
+   13  M         0.000        0.000
+   14  N         0.000        0.000
+   15  O         0.000        0.000
+   16  P         0.000        0.000
+
+
+DESCRIPTIVE STATISTICS FOR EACH MEASURE
+
+                            1            2
+                  Betweenness nBetweenness
+                 ------------ ------------
+    1      Mean             0            0
+    2   Std Dev             0            0
+    3       Sum             0            0
+    4  Variance             0            0
+    5       SSQ             0            0
+    6     MCSSQ             0            0
+    7  Euc Norm             0            0
+    8   Minimum             0            0
+    9   Maximum             0            0
+   10  N of Obs            16           16
+
+Network Centralization Index = 0.00%
+
+Output actor-by-centrality measure matrix saved as dataset 5-30 DL-bet
+
+----------------------------------------
+Running time:  00:00:01
+Output generated:  31 5 17 22:49:11
+UCINET 6.593 Copyright (c) 1992-2015 Analytic Technologies
+
