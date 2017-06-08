@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Load the Paper.js library -->
+    <script type="text/javascript" src="js/paper.js" charset="utf-8"></script>
+    <!-- Define inlined JavaScript -->
+    <script type="text/javascript" charset="utf-8">
+        class Ham {
+            constructor(center_x, center_y, scale = 1, angle = 0) {
+                var body = new paper.Shape.Ellipse({
+                    center: [center_x, center_y + 225],
+                    radius: [190, 210],
+                    fillColor: 'black'
+                });
+
+                var left_leg = new paper.Shape.Ellipse({
+                    center: [center_x - 125, center_y + 360],
+                    radius: [85, 85],
+                    fillColor: 'black'
+                });
+
+                var right_leg = new paper.Shape.Ellipse({
+                    center: [center_x + 125, center_y + 360],
+                    radius: [85, 85],
+                    fillColor: 'black'
+                });
+
+                var left_foot = new paper.Path.Line({
+                    from: [center_x - 205, center_y + 445 - 15],
+                    to: [center_x - 125, center_y + 445 - 15],
+                    strokeColor: 'black',
+                    strokeCap: 'round',
+                    strokeWidth: 30
+                });
+
+                var right_foot = new paper.Path.Line({
+                    from: [center_x + 205, center_y + 445 - 15],
+                    to: [center_x + 125, center_y + 445 - 15],
+                    strokeColor: 'black',
+                    strokeCap: 'round',
+                    strokeWidth: 30
+                });
+
+                var face = new paper.Shape.Ellipse({
+                    center: [center_x, center_y],
+                    radius: [155, 155],
+                    fillColor: 'black'
+                });
+
+                var left_cheek = new paper.Shape.Ellipse({
+                    center: [center_x - 125, center_y + 65],
+                    radius: [105, 105],
+                    fillColor: 'black'
+                });
+
+                var right_cheek = new paper.Shape.Ellipse({
+                    center: [center_x + 125, center_y + 65],
+                    radius: [105, 105],
+                    fillColor: 'black'
+                });
+
+                var left_ear = new paper.Shape.Ellipse({
+                    center: [center_x - 100, center_y - 130],
+                    radius: [40, 30],
+                    fillColor: 'black'
+                }).rotate(45);
+
+                var right_ear = new paper.Shape.Ellipse({
+                    center: [center_x + 100, center_y - 130],
+                    radius: [40, 30],
+                    fillColor: 'black'
+                }).rotate(-45);
+
+                var left_mouse = new paper.Path.Arc({
+                    from: [center_x - 60, center_y + 75],
+                    through: [center_x - 35, center_y + 105],
+                    to: [center_x, center_y + 75],
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var right_mouse = new paper.Path.Arc({
+                    from: [center_x + 60, center_y + 75],
+                    through: [center_x + 35, center_y + 105],
+                    to: [center_x, center_y + 75],
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var left_eye = new paper.Shape.Ellipse({
+                    center: [center_x - 70, center_y - 40],
+                    radius: [12, 25],
+                    fillColor: 'white'
+                });
+
+                var right_eye = new paper.Shape.Ellipse({
+                    center: [center_x + 70, center_y - 40],
+                    radius: [12, 25],
+                    fillColor: 'white'
+                });
+
+                var left_arm = new paper.Path.Rectangle({
+                    topLeft: [center_x - 120, center_y + 225],
+                    bottomRight: [center_x - 80, center_y + 295],
+                    radius: 20,
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var left_block = new paper.Path.Rectangle({
+                    topLeft: [center_x - 135, center_y + 215],
+                    bottomRight: [center_x - 65, center_y + 245],
+                    fillColor: 'black'
+                });
+
+                var right_arm = new paper.Path.Rectangle({
+                    topLeft: [center_x + 120, center_y + 225],
+                    bottomRight: [center_x + 80, center_y + 295],
+                    radius: 20,
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var right_block = new paper.Path.Rectangle({
+                    topLeft: [center_x + 135, center_y + 215],
+                    bottomRight: [center_x + 65, center_y + 245],
+                    fillColor: 'black'
+                });
+
+                var left_circle = new paper.Shape.Ellipse({
+                    center: [center_x - 165, center_y + 65],
+                    radius: [50, 50],
+                    fillColor: '#b54a03'
+                });
+
+                var right_circle = new paper.Shape.Ellipse({
+                    center: [center_x + 165, center_y + 65],
+                    radius: [50, 50],
+                    fillColor: '#b54a03'
+                });
+
+                var cheek = new paper.Group({
+                    children: [left_cheek, right_cheek, left_circle, right_circle],
+                    name: "cheek"
+                });
+
+                var ear = new paper.Group({
+                    children: [left_ear, right_ear],
+                    name: "ear"
+                });
+
+                var eye = new paper.Group({
+                    children: [left_eye, right_eye],
+                    name: "eye"
+                });
+
+                var mouse = new paper.Group({
+                    children: [left_mouse, right_mouse],
+                    name: "mouse"
+                });
+                mouse.position.y -= 65;
+                mouse.scaling = 0.75;
+
+                var leg = new paper.Group({
+                    children: [left_leg, right_leg, left_foot, right_foot],
+                    name: "leg"
+                });
+
+                var left_arms = new paper.Group({
+                    children: [left_arm, left_block],
+                    name: "left_arm"
+                });
+
+                var right_arms = new paper.Group({
+                    children: [right_arm, right_block],
+                    name: "right_arm"
+                });
+
+                var arm = new paper.Group({
+                    children: [left_arms, right_arms],
+                    name: "arm"
+                });
+
+                var head = new paper.Group({
+                    children: [face, cheek, ear, eye, mouse],
+                    name: "head"
+                });
+
+                this.character = new paper.Group({
+                    children: [body, head, leg, arm]
+                });
+                this.character.transformContent = false;
+                this.character.scaling = scale;
+                this.character.rotate(angle);
+
+                this.set_body_color(this.character);
+                this.set_face_color(this.character);
+
+                this.text = new paper.PointText(new paper.Point(center_x, center_y-100));
+                this.text.fillColor = "black";
+                this.text.content = "null";
+                this.text.fontSize = 16;
+                this.text.fontFamily = "consolas";
+            }
+
+            change_text(content) {
+                this.text.content = content;
+            }
+
+            happy() {
+                var r = 0.8;
+                var g = r / 4;
+                var b = r / 5;
+                var color = new paper.Color(r, g, b);
+
+                this.character.children[0].fillColor = color
+                this.character.children["head"].children[0].fillColor = color;
+                this.character.children["head"].children[1].children[0].fillColor = color;
+                this.character.children["head"].children[1].children[1].fillColor = color;
+                this.character.children["head"].children[2].fillColor = color;
+                this.character.children["leg"].children[0].fillColor = color;
+                this.character.children["leg"].children[1].fillColor = color;
+                this.character.children["leg"].children[2].strokeColor = color;
+                this.character.children["leg"].children[3].strokeColor = color;
+                this.character.children["arm"].children[0].children[1].fillColor = color;
+                this.character.children["arm"].children[1].children[1].fillColor = color;
+                
+                this.character.children["arm"].rotate(180);
+            }
+
+            sad() {
+                var b = 0.4;
+                var r = b / 2;
+                var g = b / 3;
+                var color = new paper.Color(r, g, b);
+
+                this.character.children[0].fillColor = color
+                this.character.children["head"].children[0].fillColor = color;
+                this.character.children["head"].children[1].children[0].fillColor = color;
+                this.character.children["head"].children[1].children[1].fillColor = color;
+                this.character.children["head"].children[2].fillColor = color;
+                this.character.children["leg"].children[0].fillColor = color;
+                this.character.children["leg"].children[1].fillColor = color;
+                this.character.children["leg"].children[2].strokeColor = color;
+                this.character.children["leg"].children[3].strokeColor = color;
+                this.character.children["arm"].children[0].children[1].fillColor = color;
+                this.character.children["arm"].children[1].children[1].fillColor = color;
+            }
+
+            move(x, y) {
+                this.character.position.x += x;
+                this.character.position.y += y;
+            }
+
+            rotate(angle) {
+                this.character.rotate(angle);
+            }
+
+            transform(size) {
+                this.character.scaling = size;
+            }
+
+            set_body_color(character) {
+                var r = Math.random() * (0 - 0.6) + 0.6;
+                var g = r / 2;
+                var b = r / 3;
+                var color = new paper.Color(r, g, b);
+
+                character.children[0].fillColor = color
+                character.children["head"].children[0].fillColor = color;
+                character.children["head"].children[1].children[0].fillColor = color;
+                character.children["head"].children[1].children[1].fillColor = color;
+                character.children["head"].children[2].fillColor = color;
+                character.children["leg"].children[0].fillColor = color;
+                character.children["leg"].children[1].fillColor = color;
+                character.children["leg"].children[2].strokeColor = color;
+                character.children["leg"].children[3].strokeColor = color;
+                character.children["arm"].children[0].children[1].fillColor = color;
+                character.children["arm"].children[1].children[1].fillColor = color;
+            }
+
+            set_face_color(character) {
+                var r = Math.random() * (0.6 - 1) + 1;
+                var g = Math.random() * (0.1 - 0.6) + 0.6;
+                var b = r / 3;
+                var color = new paper.Color(r, g, b);
+                character.children["head"]
+                    .children["cheek"]
+                    .children[2]
+                    .fillColor = color;
+                character.children["head"]
+                    .children["cheek"]
+                    .children[3]
+                    .fillColor = color;
+            }
+        }
+
+        window.onload = function () {
+            // Get a reference to the canvas object
+            var canvas = document.getElementById('myCanvas');
+            // Create an empty project and a view for the canvas:
+            paper.setup(canvas);
+
+            var width = paper.view.viewSize.width;
+            var height = paper.view.viewSize.height;
+            var image = new paper.Raster({
+                source: "https://static.vecteezy.com/system/resources/previews/000/101/804/original/vector-pastel-abstract-gemstone-pattern.jpg",
+                position: paper.view.center
+            });
+            if (width > 1400) {
+                image.scale(1.5);
+            }
+            var center_x = width / 2;
+            var center_y = height / 2;
+            // var hamster = new Ham(center_x, center_y);
+
+
+            var mousePosition = null;
+            var airPollution = 0;
+            var airPollution2 = 0;
+
+
+            var arr = new Array(25);
+
+            for (var i = 0; i < 5; i++) {
+                for (var j = 0; j < 5; j++) {
+                    arr[i * 5 + j] = new Ham((0.5 + j) * width / 5, (0.5 + i) * height / 5 - 100, 0.2);
+                    // arr[i * 5 + j].character.position = [];
+                    // arr[i * 5 + j].character.scaling = 0.3;
+                }
+            }
+
+            function loadXML(url) {
+                var request = new XMLHttpRequest();
+                request.open("GET", url, true);
+                request.onload = function () {
+                    if (request.readyState == 4) {
+                        if (request.status == 200) {
+                            var temp = request.responseXML;
+                            for (var i = 0; i < 5; i++) {
+                                for (var j = 0; j < 5; j++) {
+                                    arr[i * 5 + j].airPollution = temp.getElementsByTagName("PM25")[i * 5 + j].childNodes[0].nodeValue;
+                                    //console.log(arr[i*5 + j].airPollution);
+                                    arr[i * 5 + j].airPollution2 = temp.getElementsByTagName("PM10")[i * 5 + j].childNodes[0].nodeValue;
+                                    console.log(arr[i * 5 + j].airPollution);
+
+                                    if (arr[i * 5 + j].airPollution > 20) {
+                                        arr[i * 5 + j].sad();
+                                    } else {
+                                        arr[i * 5 + j].happy();
+                                    }
+
+                                    arr[i * 5 + j].changeText(temp.getElementsByTagName("MSRSTENAME")[i * 5 + j].childNodes[0].nodeValue);
+                                }
+                            }
+
+                        }
+                    }
+                };
+                request.send();
+            }
+
+
+            function map(value, start1, stop1, start2, stop2) {
+                return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+            }
+
+
+            paper.view.onMouseDown = function (event) {
+
+            }
+            paper.view.onMouseUp = function (event) {
+            }
+
+            paper.view.onKeyDown = function (event) {
+            }
+
+            paper.view.onFrame = function (event) {
+                if (event.count % 250 == 0) {
+                    loadXML('http://openapi.seoul.go.kr:8088/67695847446d6573353664736e6d50/xml/ListAirQualityByDistrictService/1/25/');
+                }
+            }
+
+            paper.view.onResize = function (event) {
+            }
+
+            paper.view.draw();
+        }
+    </script>
+
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+        }
+
+        div.container {
+            width: 100%;
+            border: none;
+            background-color: #aaa;
+            height: 99vh;
+        }
+
+        canvas[resize] {
+            width: 100%;
+            height: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="myCanvas" resize></canvas>
+    </div>
+</body>
+
+</html>

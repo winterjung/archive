@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Kumar+One" rel="stylesheet">
+    <script type="text/javascript" src="http://paperjs.org/assets/js/paper.js" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        class Ham {
+            constructor(center_x, center_y, scale = 1, angle = 0) {
+                var body = new paper.Shape.Ellipse({
+                    center: [center_x, center_y + 225],
+                    radius: [190, 210],
+                    fillColor: 'black'
+                });
+
+                var left_leg = new paper.Shape.Ellipse({
+                    center: [center_x - 125, center_y + 360],
+                    radius: [85, 85],
+                    fillColor: 'black'
+                });
+
+                var right_leg = new paper.Shape.Ellipse({
+                    center: [center_x + 125, center_y + 360],
+                    radius: [85, 85],
+                    fillColor: 'black'
+                });
+
+                var left_foot = new paper.Path.Line({
+                    from: [center_x - 205, center_y + 445 - 15],
+                    to: [center_x - 125, center_y + 445 - 15],
+                    strokeColor: 'black',
+                    strokeCap: 'round',
+                    strokeWidth: 30
+                });
+
+                var right_foot = new paper.Path.Line({
+                    from: [center_x + 205, center_y + 445 - 15],
+                    to: [center_x + 125, center_y + 445 - 15],
+                    strokeColor: 'black',
+                    strokeCap: 'round',
+                    strokeWidth: 30
+                });
+
+                var face = new paper.Shape.Ellipse({
+                    center: [center_x, center_y],
+                    radius: [155, 155],
+                    fillColor: 'black'
+                });
+
+                var left_cheek = new paper.Shape.Ellipse({
+                    center: [center_x - 125, center_y + 65],
+                    radius: [105, 105],
+                    fillColor: 'black'
+                });
+
+                var right_cheek = new paper.Shape.Ellipse({
+                    center: [center_x + 125, center_y + 65],
+                    radius: [105, 105],
+                    fillColor: 'black'
+                });
+
+                var left_ear = new paper.Shape.Ellipse({
+                    center: [center_x - 100, center_y - 130],
+                    radius: [40, 30],
+                    fillColor: 'black'
+                }).rotate(45);
+
+                var right_ear = new paper.Shape.Ellipse({
+                    center: [center_x + 100, center_y - 130],
+                    radius: [40, 30],
+                    fillColor: 'black'
+                }).rotate(-45);
+
+                var left_mouse = new paper.Path.Arc({
+                    from: [center_x - 60, center_y + 75],
+                    through: [center_x - 35, center_y + 105],
+                    to: [center_x, center_y + 75],
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var right_mouse = new paper.Path.Arc({
+                    from: [center_x + 60, center_y + 75],
+                    through: [center_x + 35, center_y + 105],
+                    to: [center_x, center_y + 75],
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var left_eye = new paper.Shape.Ellipse({
+                    center: [center_x - 70, center_y - 40],
+                    radius: [12, 25],
+                    fillColor: 'white'
+                });
+
+                var right_eye = new paper.Shape.Ellipse({
+                    center: [center_x + 70, center_y - 40],
+                    radius: [12, 25],
+                    fillColor: 'white'
+                });
+
+                var left_arm = new paper.Path.Rectangle({
+                    topLeft: [center_x - 120, center_y + 225],
+                    bottomRight: [center_x - 80, center_y + 295],
+                    radius: 20,
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var left_block = new paper.Path.Rectangle({
+                    topLeft: [center_x - 135, center_y + 215],
+                    bottomRight: [center_x - 65, center_y + 245],
+                    fillColor: 'black'
+                });
+
+                var right_arm = new paper.Path.Rectangle({
+                    topLeft: [center_x + 120, center_y + 225],
+                    bottomRight: [center_x + 80, center_y + 295],
+                    radius: 20,
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var right_block = new paper.Path.Rectangle({
+                    topLeft: [center_x + 135, center_y + 215],
+                    bottomRight: [center_x + 65, center_y + 245],
+                    fillColor: 'black'
+                });
+
+                var left_circle = new paper.Shape.Ellipse({
+                    center: [center_x - 165, center_y + 65],
+                    radius: [50, 50],
+                    fillColor: '#b54a03'
+                });
+
+                var right_circle = new paper.Shape.Ellipse({
+                    center: [center_x + 165, center_y + 65],
+                    radius: [50, 50],
+                    fillColor: '#b54a03'
+                });
+
+                var cheek = new paper.Group({
+                    children: [left_cheek, right_cheek, left_circle, right_circle],
+                    name: "cheek"
+                });
+
+                var ear = new paper.Group({
+                    children: [left_ear, right_ear],
+                    name: "ear"
+                });
+
+                var eye = new paper.Group({
+                    children: [left_eye, right_eye],
+                    name: "eye"
+                });
+
+                var mouse = new paper.Group({
+                    children: [left_mouse, right_mouse],
+                    name: "mouse"
+                });
+                mouse.position.y -= 65;
+                mouse.scaling = 0.75;
+
+                var leg = new paper.Group({
+                    children: [left_leg, right_leg, left_foot, right_foot],
+                    name: "leg"
+                });
+
+                var left_arms = new paper.Group({
+                    children: [left_arm, left_block],
+                    name: "left_arm"
+                });
+
+                var right_arms = new paper.Group({
+                    children: [right_arm, right_block],
+                    name: "right_arm"
+                });
+
+                var arm = new paper.Group({
+                    children: [left_arms, right_arms],
+                    name: "arm"
+                });
+
+                var head = new paper.Group({
+                    children: [face, cheek, ear, eye, mouse],
+                    name: "head"
+                });
+
+                this.text = new paper.PointText({
+                    position: [center_x, center_y - 250],
+                    content: "I'm happy!",
+                    fillColor: 'black',
+                    //fontFamily: 'Courier New',
+                    fontFamily: 'Kumar One',
+                    fontWeight: 'bold',
+                    fontSize: 50,
+                    justification: 'center'
+                });
+
+                this.character = new paper.Group({
+                    children: [body, head, leg, arm, this.text]
+                });
+                this.character.transformContent = false;
+                this.character.scaling = scale;
+                this.character.rotate(angle);
+
+                this.set_body_color(this.character);
+                this.set_face_color(this.character);
+
+                this.airPollution = 0
+                this.airPollution2 = 0
+            }
+            sad() {
+                this.changeText("시끄럽군 T^T");
+                var color = new paper.Color(0.3, 0.3, 1);
+                this.character.children["head"]
+                    .children["cheek"]
+                    .children[2]
+                    .fillColor = color;
+                this.character.children["head"]
+                    .children["cheek"]
+                    .children[3]
+                    .fillColor = color;
+            }
+            happy() {
+                this.changeText("조용하군 ^_^");
+                var color = new paper.Color(1, 0.3, 0.3);
+                this.character.children["head"]
+                    .children["cheek"]
+                    .children[2]
+                    .fillColor = color;
+                this.character.children["head"]
+                    .children["cheek"]
+                    .children[3]
+                    .fillColor = color;
+            }
+            changeText(content) {
+                this.text.content = content;
+            }
+
+            move(x, y) {
+                this.character.position.x += x;
+                this.character.position.y += y;
+            }
+
+            rotate(angle) {
+                this.character.rotate(angle);
+            }
+
+            transform(size) {
+                this.character.scaling = size;
+            }
+
+            set_body_color(character) {
+                var r = Math.random() * (0 - 0.6) + 0.6;
+                var g = r / 2;
+                var b = r / 3;
+                var color = new paper.Color(r, g, b);
+
+                character.children[0].fillColor = color
+                character.children["head"].children[0].fillColor = color;
+                character.children["head"].children[1].children[0].fillColor = color;
+                character.children["head"].children[1].children[1].fillColor = color;
+                character.children["head"].children[2].fillColor = color;
+                character.children["leg"].children[0].fillColor = color;
+                character.children["leg"].children[1].fillColor = color;
+                character.children["leg"].children[2].strokeColor = color;
+                character.children["leg"].children[3].strokeColor = color;
+                character.children["arm"].children[0].children[1].fillColor = color;
+                character.children["arm"].children[1].children[1].fillColor = color;
+            }
+
+            set_face_color(character) {
+                var r = Math.random() * (0.6 - 1) + 1;
+                var g = Math.random() * (0.1 - 0.6) + 0.6;
+                var b = r / 3;
+                var color = new paper.Color(r, g, b);
+                character.children["head"]
+                    .children["cheek"]
+                    .children[2]
+                    .fillColor = color;
+                character.children["head"]
+                    .children["cheek"]
+                    .children[3]
+                    .fillColor = color;
+            }
+        }
+
+        class Text {
+            constructor(x, y, content, size, color = "black", weight = "normal") {
+                this.text = new paper.PointText(new paper.Point(x, y));
+                this.text.fillColor = color;
+                this.text.content = content;
+                this.text.fontSize = size;
+                this.text.fontWeight = weight;
+                this.text.fontFamily = "consolas";
+            }
+        }
+
+        class Button {
+            constructor(x, y, width, height, color = "#aaa", hover_color = "#333") {
+                this.color = color;
+                this.hover_color = hover_color;
+
+                this.shadow = new paper.Path.Rectangle({
+                    point: [x, y + 10],
+                    size: [width, height],
+                    strokeWidth: 0,
+                    fillColor: "#333"
+                })
+                this.body = new paper.Path.Rectangle({
+                    point: [x, y],
+                    size: [width, height],
+                    strokeWidth: 0,
+                    fillColor: color
+                })
+
+                this.group = new paper.Group({
+                    children: [this.shadow, this.body],
+                    name: "button"
+                });
+
+                // 텍스트 위에서 커서가 움직이면 적용 안되는 버그 해결해야함
+                // this.body.onMouseEnter = event => {
+                //     this.body.fillColor = this.hover_color;
+                // }
+
+                this.body.onMouseMove = event => {
+                    this.body.fillColor = this.hover_color;
+                }
+
+                this.body.onMouseLeave = event => {
+                    this.body.fillColor = this.color;
+                }
+
+                this.body.onMouseDown = event => {
+                    this.body.position.y += 5;
+                    this.description.text.position.y += 5;
+                }
+
+                // 밖에서 Mouse Down된 채로 들어왔나 검사해야함
+                this.body.onMouseUp = event => {
+                    this.body.position.y -= 5;
+                    this.description.text.position.y -= 5;
+                }
+            }
+            set_text(content, size = 12) {
+                var x = this.body.position.x - this.body.size[0] / 2;
+                var y = this.body.position.y;
+                this.description = new Text(x, y, content, size);
+                this.group.addChild(this.description.text);
+
+                this.group.scaling = 0.75;
+            }
+        }
+        var grid = new Array(25);
+
+        window.onload = function () {
+            // Get a reference to the canvas object
+            var canvas = document.getElementById('myCanvas');
+            // Create an empty project and a view for the canvas:
+            paper.setup(canvas);
+
+            var width = paper.view.viewSize.width;
+            var height = paper.view.viewSize.height;
+            var image = new paper.Raster({
+                source: "https://static.vecteezy.com/system/resources/previews/000/101/804/original/vector-pastel-abstract-gemstone-pattern.jpg",
+                position: paper.view.center
+            });
+            if (width > 1400) {
+                image.scale(1.5);
+            }
+
+            var center_x = width / 2;
+            var center_y = height / 2;
+            // var hamster = new Ham(center_x, center_y);
+            var scale = map(height, 0, 1000, 0.1, 0.6)
+
+            for (var i = 0; i < 25; i++) {
+                grid[i] = new Ham((i % 5) * 150 + 100, parseInt(i / 5) * 150 + 10, 0.2);
+            }
+
+
+            function map(value, start1, stop1, start2, stop2) {
+                return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+            }
+
+            paper.view.onMouseDown = function (event) { }
+            paper.view.onMouseUp = function (event) {
+
+            }
+
+            paper.view.onMouseMove = function (event) {
+                // hamster.character.position = event.point;
+            }
+
+            paper.view.onFrame = function (event) {
+                if (event.count % 250 == 0) {
+                    loadXML(
+                        'http://openapi.seoul.go.kr:8088/67695847446d6573353664736e6d50/xml/ListAirQualityByDistrictService/1/25/'
+                    );
+                    console.log("5초 마다 실행됩니다");
+                }
+            }
+
+            function loadXML(url) {
+                var request = new XMLHttpRequest();
+                request.open("GET", url, true);
+                request.onload = function () {
+                    if (request.readyState == 4) {
+                        if (request.status == 200) {
+                            var temp = request.responseXML;
+                            for (var i = 0; i < 12; i++) {
+                                    var pm25 = temp.getElementsByTagName("PM25")[i].childNodes[0].nodeValue;
+                                    grid[i].airPollution = pm25;
+                                    // console.log('PM2.5 : ' + grid[i*5 + j].airPollution);
+                                    var pm10 = temp.getElementsByTagName("PM10")[i].childNodes[0].nodeValue;
+                                    grid[i].airPollution2 = pm10;
+                                    // console.log('PM10 : ' + grid[i * 5 + j].airPollution2);
+
+                                    if (grid[i].airPollution > 20) {
+                                        grid[i].happy();
+                                    } else {
+                                        grid[i].sad();
+                                    }
+                                    var place = temp.getElementsByTagName("MSRSTENAME")[i].childNodes[0]
+                                        .nodeValue;
+                                    grid[i].changeText(place + "\n초미세 : " + pm25 + ", 미세 : " + pm10)
+                                
+                            }
+
+                        }
+                    }
+                };
+                request.send();
+            }
+
+            paper.view.onResize = function (event) { }
+
+            paper.view.draw();
+        }
+    </script>
+
+    <script type="text/javascript">
+        var changingVolume;
+
+        var webaudio_tooling_obj = function () {
+
+            var audioContext = new AudioContext();
+            console.log("audio is starting up ...");
+            var BUFF_SIZE = 16384;
+            var audioInput = null,
+                microphone_stream = null,
+                gain_node = null,
+                script_processor_node = null,
+                script_processor_fft_node = null,
+                analyserNode = null;
+
+            if (!navigator.getUserMedia)
+                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                    navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+            if (navigator.getUserMedia) {
+
+                navigator.getUserMedia({
+                    audio: true
+                },
+                    function (stream) {
+                        start_microphone(stream);
+
+                    },
+                    function (e) {
+                        alert('Error capturing audio.');
+                    }
+                );
+
+            } else {
+                alert('getUserMedia not supported in this browser.');
+            }
+
+            // ---
+
+
+
+
+
+            function show_some_data(given_typed_array, num_row_to_display, label) {
+
+                var size_buffer = given_typed_array.length;
+                var index = 0;
+                var max_index = num_row_to_display;
+                var sum = 0;
+                //console.log("__________ " + label);
+
+                for (; index < max_index && index < size_buffer; index += 1) {
+
+                    //console.log(given_typed_array[index]);
+                    sum += given_typed_array[index];
+                }
+                //console.log("sum = " + sum);
+                changingVolume = sum / num_row_to_display;
+                for (var i = 12; i < 25; i++) {
+                    if (changingVolume > 30) {
+                        grid[i].happy();
+                    }
+                    else {
+                        grid[i].sad();
+                    }
+                }
+            }
+
+
+
+
+
+            function process_microphone_buffer(event) {
+
+                var i, N, inp, microphone_output_buffer;
+
+                microphone_output_buffer = event.inputBuffer.getChannelData(0); // just mono - 1 channel for now
+
+                // microphone_output_buffer  <-- this buffer contains current gulp of data size BUFF_SIZE
+
+                show_some_data(microphone_output_buffer, 5, "from getChannelData");
+            }
+
+
+
+
+
+            function start_microphone(stream) {
+
+                gain_node = audioContext.createGain();
+                gain_node.connect(audioContext.destination);
+
+                microphone_stream = audioContext.createMediaStreamSource(stream);
+                microphone_stream.connect(gain_node);
+
+                script_processor_node = audioContext.createScriptProcessor(BUFF_SIZE, 1, 1);
+                script_processor_node.onaudioprocess = process_microphone_buffer;
+
+                microphone_stream.connect(script_processor_node);
+
+                script_processor_fft_node = audioContext.createScriptProcessor(2048, 1, 1);
+                script_processor_fft_node.connect(gain_node);
+
+                analyserNode = audioContext.createAnalyser();
+                analyserNode.smoothingTimeConstant = 0;
+                analyserNode.fftSize = 2048;
+
+                microphone_stream.connect(analyserNode);
+
+                analyserNode.connect(script_processor_fft_node);
+
+                script_processor_fft_node.onaudioprocess = function () {
+
+                    // get the average for the first channel
+                    var array = new Uint8Array(analyserNode.frequencyBinCount);
+                    analyserNode.getByteFrequencyData(array);
+
+                    // draw the spectrogram
+                    if (microphone_stream.playbackState == microphone_stream.PLAYING_STATE) {
+
+                        show_some_data(array, 5, "from fft");
+                    }
+                };
+            }
+
+        }();
+    </script>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+        }
+
+        div.container {
+            width: 100%;
+            border: none;
+            background-color: #aaa;
+            height: 99vh;
+        }
+
+        canvas[resize] {
+            width: 100%;
+            height: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="myCanvas" hidpi="on" resize></canvas>
+        <audio id="hamster_audio">
+            <source src="" type="audio/mp3">
+        </audio>
+    </div>
+</body>
+
+</html>
