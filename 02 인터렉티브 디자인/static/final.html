@@ -1,0 +1,712 @@
+<!--
+계획 상태변화표 그리기
+인풋: 원과 원 사이.
+아웃풋: 원 안에
+같은 아웃풋의 변화: 원
+
+a. 기능점수(40%)
+- 다양한 인풋 들을 이용해, 디자인해 둔 상태 메소드를을 호출하는 알고리즘을 짠다.
+-> 인풋 부분
+-> 클래스 부분
+-> 메소드 구현 부분
+- 클래스는 적어도 3가지 이상의 상태를 만들어 내는 메소드들을 갖는다.
+-> 메소드 리스트
+b. 정성점수(작업과 스크립트에서 그리드, 컬러, 타이포그라피)(30%)
+c. 아이디어 점수(인풋과 아웃풋의 매칭의 적절성)(30%)
+-->
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Load the Paper.js library -->
+    <script type="text/javascript" src="js/paper.js" charset="utf-8"></script>
+    <!-- Define inlined JavaScript -->
+    <script type="text/javascript" charset="utf-8">
+        class Ham {
+            constructor(center_x, center_y, scale = 0.2, angle = 0) {
+                this.status = "normal";
+                this.init_x = center_x;
+                this.init_y = center_y;
+                var body = new paper.Shape.Ellipse({
+                    center: [center_x, center_y + 225],
+                    radius: [190, 210],
+                    fillColor: 'black'
+                });
+
+                var left_leg = new paper.Shape.Ellipse({
+                    center: [center_x - 125, center_y + 360],
+                    radius: [85, 85],
+                    fillColor: 'black'
+                });
+
+                var right_leg = new paper.Shape.Ellipse({
+                    center: [center_x + 125, center_y + 360],
+                    radius: [85, 85],
+                    fillColor: 'black'
+                });
+
+                var left_foot = new paper.Path.Line({
+                    from: [center_x - 205, center_y + 445 - 15],
+                    to: [center_x - 125, center_y + 445 - 15],
+                    strokeColor: 'black',
+                    strokeCap: 'round',
+                    strokeWidth: 30
+                });
+
+                var right_foot = new paper.Path.Line({
+                    from: [center_x + 205, center_y + 445 - 15],
+                    to: [center_x + 125, center_y + 445 - 15],
+                    strokeColor: 'black',
+                    strokeCap: 'round',
+                    strokeWidth: 30
+                });
+
+                var face = new paper.Shape.Ellipse({
+                    center: [center_x, center_y],
+                    radius: [155, 155],
+                    fillColor: 'black'
+                });
+
+                var left_cheek = new paper.Shape.Ellipse({
+                    center: [center_x - 125, center_y + 65],
+                    radius: [105, 105],
+                    fillColor: 'black'
+                });
+
+                var right_cheek = new paper.Shape.Ellipse({
+                    center: [center_x + 125, center_y + 65],
+                    radius: [105, 105],
+                    fillColor: 'black'
+                });
+
+                var left_ear = new paper.Shape.Ellipse({
+                    center: [center_x - 100, center_y - 130],
+                    radius: [40, 30],
+                    fillColor: 'black'
+                }).rotate(45);
+
+                var right_ear = new paper.Shape.Ellipse({
+                    center: [center_x + 100, center_y - 130],
+                    radius: [40, 30],
+                    fillColor: 'black'
+                }).rotate(-45);
+
+                var left_mouse = new paper.Path.Arc({
+                    from: [center_x - 60, center_y + 75],
+                    through: [center_x - 35, center_y + 105],
+                    to: [center_x, center_y + 75],
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var right_mouse = new paper.Path.Arc({
+                    from: [center_x + 60, center_y + 75],
+                    through: [center_x + 35, center_y + 105],
+                    to: [center_x, center_y + 75],
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var left_eye = new paper.Shape.Ellipse({
+                    center: [center_x - 55, center_y - 40],
+                    radius: [12, 25],
+                    fillColor: 'white'
+                });
+
+                var right_eye = new paper.Shape.Ellipse({
+                    center: [center_x + 55, center_y - 40],
+                    radius: [12, 25],
+                    fillColor: 'white'
+                });
+
+                var left_arm = new paper.Path.Rectangle({
+                    topLeft: [center_x - 120, center_y + 225],
+                    bottomRight: [center_x - 80, center_y + 295],
+                    radius: 20,
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var left_block = new paper.Path.Rectangle({
+                    topLeft: [center_x - 135, center_y + 215],
+                    bottomRight: [center_x - 65, center_y + 245],
+                    fillColor: 'black'
+                });
+
+                var right_arm = new paper.Path.Rectangle({
+                    topLeft: [center_x + 120, center_y + 225],
+                    bottomRight: [center_x + 80, center_y + 295],
+                    radius: 20,
+                    strokeColor: 'white',
+                    strokeWidth: 10
+                });
+
+                var right_block = new paper.Path.Rectangle({
+                    topLeft: [center_x + 135, center_y + 215],
+                    bottomRight: [center_x + 65, center_y + 245],
+                    fillColor: 'black'
+                });
+
+                var left_circle = new paper.Shape.Ellipse({
+                    center: [center_x - 165, center_y + 65],
+                    radius: [50, 50],
+                    fillColor: '#b54a03'
+                });
+
+                var right_circle = new paper.Shape.Ellipse({
+                    center: [center_x + 165, center_y + 65],
+                    radius: [50, 50],
+                    fillColor: '#b54a03'
+                });
+
+                var cheek = new paper.Group({
+                    children: [left_cheek, right_cheek, left_circle, right_circle],
+                    name: "cheek"
+                });
+
+                var ear = new paper.Group({
+                    children: [left_ear, right_ear],
+                    name: "ear"
+                });
+
+                var eye = new paper.Group({
+                    children: [left_eye, right_eye],
+                    name: "eye"
+                });
+
+                var mouse = new paper.Group({
+                    children: [left_mouse, right_mouse],
+                    name: "mouse"
+                });
+                mouse.position.y -= 65;
+                mouse.scaling = 0.75;
+
+                var leg = new paper.Group({
+                    children: [left_leg, right_leg, left_foot, right_foot],
+                    name: "leg"
+                });
+
+                var left_arms = new paper.Group({
+                    children: [left_arm, left_block],
+                    name: "left_arm"
+                });
+
+                var right_arms = new paper.Group({
+                    children: [right_arm, right_block],
+                    name: "right_arm"
+                });
+
+                var arm = new paper.Group({
+                    children: [left_arms, right_arms],
+                    name: "arm"
+                });
+
+                var head = new paper.Group({
+                    children: [face, cheek, ear, eye, mouse],
+                    name: "head"
+                });
+
+                this.character = new paper.Group({
+                    children: [body, head, leg, arm]
+                });
+                this.character.transformContent = false;
+                this.character.scaling = scale;
+                this.character.rotate(angle);
+
+                this.set_body_color(this.character);
+                this.set_face_color(this.character);
+                
+                this.think = "뭘 먹어볼까?";
+            }
+            
+            happy() {
+                this.change_body_color("#fdb8b5");
+                this.think = "내가 좋아하는게 엄청 많아!";
+            }
+            normal() {
+                this.change_body_color(this.body_color);
+                this.think = "뭘 먹어볼까?";
+            }
+            sad() {
+                this.change_body_color("#0776b8");
+                this.think = "지지고나 먹자";
+            }
+            
+            feel() {
+                if (this.status === "normal") {
+                    this.normal();
+                }
+                else if(this.status === "happy") {
+                    this.happy();
+                }
+                else if(this.status === "sad") {
+                    this.sad();
+                }
+            }
+            
+            change_body_color(color) {
+                this.character.children[0].fillColor = color
+                this.character.children["head"].children[0].fillColor = color;
+                this.character.children["head"].children[1].children[0].fillColor = color;
+                this.character.children["head"].children[1].children[1].fillColor = color;
+                this.character.children["head"].children[2].fillColor = color;
+                this.character.children["leg"].children[0].fillColor = color;
+                this.character.children["leg"].children[1].fillColor = color;
+                this.character.children["leg"].children[2].strokeColor = color;
+                this.character.children["leg"].children[3].strokeColor = color;
+                this.character.children["arm"].children[0].children[1].fillColor = color;
+                this.character.children["arm"].children[1].children[1].fillColor = color;
+            }
+            
+            move(x, y) {
+                this.character.position.x += x;
+                this.character.position.y += y;
+            }
+
+            rotate(angle) {
+                this.character.rotate(angle);
+            }
+
+            transform(size) {
+                this.character.scaling = size;
+            }
+
+            set_body_color(character) {
+                var r = Math.random() * (0 - 0.6) + 0.6;
+                var g = r / 2;
+                var b = r / 3;
+                var color = new paper.Color(r, g, b);
+                this.body_color = color;
+                this.change_body_color(color);
+            }
+
+            set_face_color(character) {
+                var r = Math.random() * (0.6 - 1) + 1;
+                var g = Math.random() * (0.1 - 0.6) + 0.6;
+                var b = r / 3;
+                var color = new paper.Color(r, g, b);
+                character.children["head"]
+                    .children["cheek"]
+                    .children[2]
+                    .fillColor = color;
+                character.children["head"]
+                    .children["cheek"]
+                    .children[3]
+                    .fillColor = color;
+            }
+        }
+
+        class building {
+            constructor(name, pos, scale, menu) {
+                var width = paper.view.viewSize.width;
+                var height = paper.view.viewSize.height;
+                var x = pos[0];
+                var y = pos[1];
+
+                this.image = new paper.Raster({
+                    source: "./img/" + name + ".svg",
+                    position: pos,
+                    scaling: scale
+                });
+                this.text = new paper.PointText({
+                    position: [x, y + 70],
+                    content: name,
+                    fontSize: 24,
+                    fontWeight: "bold",
+                    justification: "center"
+                })
+
+                menu = menu.replace(/▶ 평가없음\n/g, "");
+                menu = menu.replace(/점심\n한\n코너\n운영/g, "메뉴 없음");
+                menu = menu.replace(/■/g, "\n■");
+                var beef = /돼지|고기|갈비/.test(menu);
+                var chicken = /닭|치킨/.test(menu);
+                var snack = /떢볶이|떡/.test(menu);
+                this.menu_type = [beef, chicken, snack];
+
+                var menu_length = menu.split("\n").length
+                this.menu_pan = new paper.Path.Rectangle({
+                    point: [x + 70, y - menu_length * 9],
+                    size: [170, menu_length * 18],
+                    strokeWidth: 3,
+                    strokeColor: "#333",
+                    fillColor: "#eee"
+                })
+                this.menu_text = new paper.PointText({
+                    position: [x + 80, y - menu_length * 7],
+                    content: menu,
+                    fontSize: 12,
+                })
+                this.svg = new paper.Group({
+                    children: [this.image, this.text],
+                    name: "svg"
+                });
+                this.menu = new paper.Group({
+                    children: [this.menu_pan, this.menu_text],
+                    name: "menu"
+                });
+                this.menu.visible = false;
+
+                this.all = new paper.Group({
+                    children: [this.svg, this.menu],
+                    name: name
+                });
+
+                this.create_food_set()
+            }
+
+            create_food_set() {
+                var x = this.image.position.x
+                var y = this.image.position.y
+
+                var a = new paper.Raster({
+                    source: "./img/고기.svg",
+                    position: [x - 55, y - 70],
+                    scaling: 0.1
+                });
+                a.rotate(30)
+                var b = new paper.Raster({
+                    source: "./img/고기.svg",
+                    position: [x + 90, y],
+                    scaling: 0.1,
+                    angle: 60
+                });
+                b.rotate(60)
+                var c = new paper.Raster({
+                    source: "./img/고기.svg",
+                    position: [x - 70, y + 70],
+                    scaling: 0.1
+                });
+                c.rotate(-60)
+                this.beef_food_set = new paper.Group({
+                    chileren: [],
+                    name: "beef_group"
+                })
+                this.beef_food_set.addChild(a);
+                this.beef_food_set.addChild(b);
+                this.beef_food_set.addChild(c);
+                this.beef_food_set.position.y -= 10;
+
+                var a = new paper.Raster({
+                    source: "./img/치킨.svg",
+                    position: [x + 75, y - 70],
+                    scaling: 0.1
+                });
+                var b = new paper.Raster({
+                    source: "./img/치킨.svg",
+                    position: [x - 90, y],
+                    scaling: 0.1
+                });
+                var c = new paper.Raster({
+                    source: "./img/치킨.svg",
+                    position: [x + 70, y + 60],
+                    scaling: 0.1
+                });
+                this.chicken_food_set = new paper.Group({
+                    chileren: [],
+                    name: "chicken_group"
+                })
+                this.chicken_food_set.addChild(a);
+                this.chicken_food_set.addChild(b);
+                this.chicken_food_set.addChild(c);
+                this.chicken_food_set.position.y -= 10;
+
+                var a = new paper.Raster({
+                    source: "./img/떡.svg",
+                    position: [x, y - 70],
+                    scaling: 0.1
+                });
+                this.snack_food_set = new paper.Group({
+                    chileren: [],
+                    name: "snack_group"
+                })
+                this.snack_food_set.addChild(a);
+                this.snack_food_set.position.y -= 10;
+
+                this.beef_food_set.visible = false;
+                this.chicken_food_set.visible = false;
+                this.snack_food_set.visible = false;
+            }
+            turn_on_food() {
+                if (this.menu_type[0]) {
+                    this.beef_food_set.visible = true;
+                }
+
+                if (this.menu_type[1]) {
+                    this.chicken_food_set.visible = true;
+                }
+
+                if (this.menu_type[2]) {
+                    this.snack_food_set.visible = true;
+                }
+            }
+            turn_off_food() {
+                this.beef_food_set.visible = false;
+
+                this.chicken_food_set.visible = false;
+
+                this.snack_food_set.visible = false;
+            }
+
+            show_food() {
+                if (this.menu_type[0]) {
+                    for (var i = 0; i < this.beef_food_set.children.length; i++) {
+                        var angle = 1
+                        if (i % 2 == 0) angle *= -1;
+                        this.beef_food_set.children[i].rotate(angle);
+                    }
+                }
+
+                if (this.menu_type[1]) {
+                    for (var i = 0; i < this.chicken_food_set.children.length; i++) {
+                        var angle = 1
+                        if (i % 2 == 0) angle *= -1;
+                        this.chicken_food_set.children[i].rotate(angle);
+                    }
+                }
+
+                if (this.menu_type[2]) {
+                    for (var i = 0; i < this.snack_food_set.children.length; i++) {
+                        var angle = 1
+                        if (i % 2 == 0) angle *= -1;
+                        this.snack_food_set.children[i].rotate(angle);
+                    }
+                }
+            }
+
+            show_menu() {
+                this.menu.visible = true;
+            }
+
+            hide_menu() {
+                this.menu.visible = false;
+            }
+        }
+        window.onload = function() {
+            var canvas = document.getElementById('myCanvas');
+            // Create an empty project and a view for the canvas:
+            paper.setup(canvas);
+
+            var width = paper.view.viewSize.width;
+            var height = paper.view.viewSize.height;
+
+            var menu = null;
+            var payload = {
+                "user_key": "encryptedUserKey",
+                "type": "text",
+                "content": "오늘의 식단"
+            };
+            var cache = localStorage.getItem("menu.txt");
+            if (cache == null) {
+                fetch("http://p.winterj.me:5000/api/message", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(function(res) {
+                        console.log("load ok");
+                        return res.json();
+                    })
+                    .then(function(data) {
+                        console.log("json ok");
+                        menu = data.message.text;
+                        localStorage.setItem("menu.txt", menu);
+                        done();
+                    });
+
+            } else {
+                menu = cache;
+                done();
+            }
+
+            function done() {
+                var width = paper.view.viewSize.width;
+                var height = paper.view.viewSize.height;
+                var menus = menu.split("\n\n")
+
+                var image = new paper.Raster({
+                    source: "https://static.vecteezy.com/system/resources/previews/000/101/804/original/vector-pastel-abstract-gemstone-pattern.jpg",
+                    position: paper.view.center
+                });
+                if (width > 1400) {
+                    image.scale(1.5);
+                }
+
+                var place_1 = new building("학관", [width / 4, height * 2/ 5], 0.3, "□" + menus[0].split("□")[1])
+                place_1.show_food()
+                var place_2 = new building("남문관", [width / 4, height * 3 / 4], 0.25, menus[1])
+                var place_3 = new building("교직원", [width * 3 / 4, height * 2 / 5], 0.2, menus[2])
+                var place_4 = new building("신기숙사", [width * 3 / 4, height * 3 / 4], 0.2, menus[3])
+                var places = [place_1, place_2, place_3, place_4];
+
+                var center_x = width / 2;
+                var center_y = height / 2;
+                // var hamster = new Ham(center_x, center_y);
+                var hamster = new Ham(center_x, center_y, 0.2);
+                var pos = null;
+                var move = false;
+                var arrow = null;
+                
+                
+                var title_back = new paper.Path.Rectangle({
+                    point: [0, 0],
+                    size: [width, 75],
+                    strokeWidth: 0,
+                    fillColor: "#91A8D2"
+                })
+                var title = new paper.PointText({
+                    position: [width/2, 50],
+                    content: "오늘 식단엔 무엇이 있을까~?",
+                    justification: "center",
+                    fontSize: 36,
+                })
+                var title_back = new paper.Path.Rectangle({
+                    point: [0, 75],
+                    size: [width, 40],
+                    strokeWidth: 0,
+                    fillColor: "#f7c9cb"
+                })
+                var think = new paper.PointText({
+                    position: [width/2, 102],
+                    content: "햄스터의 생각 : " + hamster.think,
+                    justification: "center",
+                    fontSize: 18,
+                })
+
+
+                function map(value, start1, stop1, start2, stop2) {
+                    return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+                }
+
+
+                function draw_arrow(x, y) {
+                    if (arrow !== null) {
+                        arrow.remove();
+                    }
+                    arrow = new paper.Path.RegularPolygon([x, y - 5], 3, 10);
+                    arrow.fillColor = "red";
+                    arrow.rotate(180);
+                }
+
+                paper.view.onMouseDown = function(event) {
+                    var x = event.point.x;
+                    var y = event.point.y;
+                    pos = [x, y];
+                    draw_arrow(x, y);
+                    move = true;
+                    
+                }
+                paper.view.onMouseUp = function(event) {
+                    
+                }
+
+                
+                paper.view.onKeyDown = function (event) {
+                    switch(event.key) {
+                        case "a":
+                            hamster.move(-10, 0);
+                            break;
+                        case "s":
+                            hamster.move(0, 10);
+                            break;
+                        case "d":
+                            hamster.move(10, 0);
+                            break;
+                        case "w":
+                            hamster.move(0, -10);
+                            break;
+                    }
+                }
+
+                paper.view.onFrame = function(event) {
+                    hamster.status = "normal";
+                    if (move) {
+                        var mouse_x = pos[0];
+                        var mouse_y = pos[1];
+                        var ham_x = hamster.character.position.x;
+                        var ham_y = hamster.character.position.y;
+                        var d_x = Math.abs(ham_x - mouse_x);
+                        var d_y = Math.abs(ham_y - mouse_y);
+                        var speed = 5;
+
+                        if (d_x < 5 && d_y < 5) {
+                            arrow.remove();
+                            move = false;
+                        }
+                        if (d_x > 5) {
+                            hamster.character.position.x -= speed * (ham_x - mouse_x) / d_x;
+                        }
+                        if (d_y > 5) {
+                            hamster.character.position.y -= speed * (ham_y - mouse_y) / d_y;
+                        }
+                    }
+                    for (var i=0; i<places.length; i++) {
+                        var ham_x = hamster.character.position.x;
+                        var ham_y = hamster.character.position.y;
+                        var place_x = places[i].image.position.x;
+                        var place_y = places[i].image.position.y;
+                        var d_x = Math.abs(ham_x - place_x);
+                        var d_y = Math.abs(ham_y - place_y);
+                        var d = Math.sqrt(Math.pow(d_x, 2) + Math.pow(d_y, 2));
+                        if (d < 150) {
+                            if (places[i].menu_type.reduce((p, c) => p + c) < 2) {
+                                hamster.status = "sad";
+                            }
+                            else {
+                                hamster.status = "happy";
+                            }
+                            
+                            places[i].turn_on_food();
+                            places[i].show_food();
+                            places[i].show_menu();
+                        }
+                        else {
+                            places[i].turn_off_food();
+                            places[i].hide_menu();
+                        }
+                    }
+                    hamster.feel();
+                    think.content = "햄스터의 생각 : " + hamster.think;
+                }
+
+                paper.view.onResize = function(event) {}
+
+                paper.view.draw();
+
+            }
+        }
+
+    </script>
+
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+        }
+        
+        div.container {
+            width: 100%;
+            border: none;
+            background-color: #aaa;
+            height: 99vh;
+        }
+        
+        canvas[resize] {
+            width: 100%;
+            height: inherit;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="myCanvas" resize></canvas>
+    </div>
+</body>
+
+</html>
